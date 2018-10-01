@@ -22,28 +22,28 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string")
+     * @ORM\Column(name="name", type="string", nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="surname", type="string")
+     * @ORM\Column(name="surname", type="string", nullable=true)
      */
     private $surname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number", type="string")
+     * @ORM\Column(name="phone_number", type="string", nullable=true)
      */
     private $phone_number;
 
     /**
      * @var Chief
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Chief", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Chief")
      */
     private $chief;
 
