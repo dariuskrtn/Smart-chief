@@ -4,6 +4,15 @@ parameters:
 #    parameter_name: value
 
 services:
+    notification_factory:
+        class: AppBundle\Factory\NotificationFactory
+        arguments: []
+    review_factory:
+        class: AppBundle\Factory\ReviewFactory
+        arguments: []
+    request_factory:
+        class: AppBundle\Factory\RequestFactory
+        arguments: []
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
