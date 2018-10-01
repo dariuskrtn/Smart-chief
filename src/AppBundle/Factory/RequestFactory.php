@@ -25,9 +25,12 @@ class RequestFactory
     {
         $request = new Request();
         $request->setClient($user);
+        $request->setDescription("");
 
         $request->setStatus(RequestStatus::PENDING);
         $request->setRequestType(RequestType::ASAP);
+
+
 
         return $request;
     }
