@@ -80,7 +80,7 @@ class Request
     /**
      * @var Review
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Review", inversedBy="request")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Review", mappedBy="request")
      */
     private $review;
 

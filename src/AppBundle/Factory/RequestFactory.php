@@ -28,7 +28,7 @@ class RequestFactory
         $request->setDescription("");
 
         $request->setStatus(RequestStatus::PENDING);
-        $request->setRequestType(RequestType::ASAP);
+        $request->setRequestType(RequestType::SPECIFIC);
 
 
 
