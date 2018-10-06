@@ -3,7 +3,7 @@ app.index:
   defaults: { _controller: AppBundle:Default:index }
 
 app.createRequest:
-  path: /request/create
+  path: /request/create/{chiefId}
   defaults: { _controller: AppBundle:Default:createRequest }
 
 app.viewRequest:
