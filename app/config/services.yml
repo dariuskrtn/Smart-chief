@@ -13,6 +13,15 @@ services:
     request_factory:
         class: AppBundle\Factory\RequestFactory
         arguments: []
+    chief_factory:
+        class: AppBundle\Factory\ChiefFactory
+        arguments: []
+    comment_factory:
+        class: AppBundle\Factory\CommentFactory
+        arguments: []
+    request_edit_service:
+        class: AppBundle\Service\RequestEditService
+        arguments: []
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

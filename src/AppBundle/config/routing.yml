@@ -1,3 +1,35 @@
 app.index:
   path:  /
   defaults: { _controller: AppBundle:Default:index }
+
+app.createRequest:
+  path: /request/create
+  defaults: { _controller: AppBundle:Default:createRequest }
+
+app.viewRequest:
+  path: /request/view/{requestId}
+  defaults: { _controller: AppBundle:Default:viewRequest }
+
+app.commentRequest:
+  path: /request/comment/{requestId}
+  defaults: { _controller: AppBundle:Default:commentRequest }
+
+app.cancelRequest:
+  path: /request/cancel/{requestId}
+  defaults: { _controller: AppBundle:Default:cancelRequest }
+
+app.createReview:
+  path: /request/review/{requestId}
+  defaults: { _controller: AppBundle:Default:createReview }
+
+chief.register:
+  path: /chief/register
+  defaults: { _controller: AppBundle:Chief:createChief }
+
+chief.request_verification:
+  path: /chief/request-verification
+  defaults: { _controller: AppBundle:Chief:requestChiefVerification }
+
+chief.change_request_status:
+  path: /chief/request/status/{requestId}/{statusId}
+  defaults: { _controller: AppBundle:Chief:changeRequestStatus }

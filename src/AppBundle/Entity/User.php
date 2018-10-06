@@ -41,6 +41,13 @@ class User extends BaseUser
     private $phone_number;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="chief_user", type="boolean", nullable=false)
+     */
+    private $chiefUser;
+
+    /**
      * @var Chief
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Chief")
@@ -162,6 +169,22 @@ class User extends BaseUser
     public function setNotifications($notifications)
     {
         $this->notifications = $notifications;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isChiefUser()
+    {
+        return $this->chiefUser;
+    }
+
+    /**
+     * @param bool $chiefUser
+     */
+    public function setChiefUser($chiefUser)
+    {
+        $this->chiefUser = $chiefUser;
     }
 
 }

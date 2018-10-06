@@ -2,15 +2,17 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
+use AppBundle\Enum\RequestType;
+use AppBundle\Form\CommentType;
+use AppBundle\Form\ReviewType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
@@ -18,4 +20,107 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    public function createRequestAction(Request $request, $chiefId = 0)
+    {
+        $m = $this->getDoctrine()->getManager();
+
+        $chief = $m->find('AppBundle:Chief', $chiefId);
+
+        $chiefRequest = $this->get('request_factory')->create($this->getUser(), $chief);
+
+        $form = $this->createForm(RequestType::class, $chiefRequest);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $m->persist($chiefRequest);
+            $m->flush();
+
+            return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
+        }
+
+        return $this->render('formTemplate.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    public function cancelRequestAction($requestId)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $request = $m->find('AppBundle:Request', $requestId);
+        $requestEditService = $this->get('request_edit_service');
+
+        if ($request != null) {
+            $requestEditService->cancelRequest($request);
+            $m->persist($request);
+            $m->flush();
+        }
+        return $this->redirectToRoute('app.index');
+    }
+
+    public function commentRequestAction(Request $request, $requestId)
+    {
+        $m = $this->getDoctrine()->getManager();
+
+        $chiefRequest = $m->find('AppBundle:Request', $requestId);
+
+        if ($chiefRequest != null) {
+            $comment = $this->get('comment_factory')->create($chiefRequest, $this->getUser());
+
+            $form = $this->createForm(CommentType::class, $comment);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $m->persist($comment);
+                $m->flush();
+
+                return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
+            }
+            return $this->render('formTemplate.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
+        return $this->redirectToRoute('app.index');
+    }
+
+    public function createReviewAction(Request $request, $requestId)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $chiefRequest = $m->find('AppBundle:Request', $requestId);
+
+        if ($chiefRequest != null) {
+            $review = $this->get('review_factory')->create($chiefRequest);
+
+            $form = $this->createForm(ReviewType::class, $review);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $m->persist($review);
+                $m->flush();
+
+                return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
+            }
+            return $this->render('formTemplate.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
+        return $this->redirectToRoute('app.index');
+    }
+
+    public function viewRequestAction($requestId)
+    {
+        $request = $this->getDoctrine()->getManager()->find('AppBundle:Request', $requestId);
+
+        if ($request != null) {
+            $isAdmin = false;
+            $isChief = false;
+            if ($request->getChief() != null) $isChief = ($this->getUser()->getChief()->getId() == $request->getChief()->getId());
+
+            return $this->render('default/viewRequest.html.twig', [
+                'request' => $request,
+                'isAdmin' => $isAdmin,
+                'isChief' => $isChief
+            ]);
+        }
+        return $this->redirectToRoute('app.index');
+    }
+
+
 }
