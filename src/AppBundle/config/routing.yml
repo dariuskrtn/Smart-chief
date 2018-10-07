@@ -22,6 +22,14 @@ app.createReview:
   path: /request/review/{requestId}
   defaults: { _controller: AppBundle:Default:createReview }
 
+app.viewChief:
+  path: /chief/view/{chiefId}
+  defaults: { _controller: AppBundle:Default:viewChief }
+
+app.viewChiefList:
+  path: /chief/list/{page}
+  defaults: { _controller: AppBundle:Default:viewChiefList }
+
 chief.register:
   path: /chief/register
   defaults: { _controller: AppBundle:Chief:createChief }

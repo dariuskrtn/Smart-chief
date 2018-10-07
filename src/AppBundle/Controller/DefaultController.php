@@ -122,5 +122,34 @@ class DefaultController extends Controller
         return $this->redirectToRoute('app.index');
     }
 
+    public function viewChiefAction($chiefId)
+    {
+        $chief = $this->getDoctrine()->getManager()->find('AppBundle:Chief', $chiefId);
+
+        $isAdmin = false;
+        $isChief = false;
+        if ($this->getUser()->getChief() != null && $chief->getId() == $this->getUser()->getChief()->getId()) $isChief = true;
+
+
+        if ($chief != null) {
+            return $this->render('default/viewChief.html.twig', [
+                'chief' => $chief,
+                'isAdmin' => $isAdmin,
+                'isChief' => $isChief
+            ]);
+        }
+        return $this->redirectToRoute('app.index');
+    }
+
+    public function viewChiefListAction($page)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $chiefList = $m->getRepository('AppBundle:Chief')->findBy([], [], 12, ($page-1)*$this->getParameter('chiefs_per_page'));
+
+        return $this->render('default/viewChiefList.html.twig', [
+            'chiefList' => $chiefList,
+        ]);
+    }
+
 
 }
