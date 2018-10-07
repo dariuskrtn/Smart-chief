@@ -58,4 +58,18 @@ class ChiefController extends Controller
         return $this->redirectToRoute('app.viewRequest', ['requestId' => $request->getId()]);
     }
 
+    public function viewRequestHistoryAction($chiefId)
+    {
+        $m = $this->getDoctrine()->getManager();
+        $chief = $m->find('AppBundle:Chief', $chiefId);
+
+        $requests = [];
+
+        if ($chief) $requests = $chief->getChiefRequests();
+
+        return $this->render('default/viewRequestHistory.html.twig', [
+            'requestList' => $requests,
+        ]);
+    }
+
 }

@@ -75,7 +75,7 @@ body {
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #FCFCFC;
+    background-color: #FEFEFE;
 }
 
 [tabindex="-1"]:focus {
@@ -5206,7 +5206,7 @@ input[type="button"].btn-block {
 .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
-    background-color: #eeeeee;
+    background-color: #f7f7f7;
     border-radius: 0.3rem;
 }
 

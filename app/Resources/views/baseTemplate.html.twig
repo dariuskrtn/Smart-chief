@@ -12,8 +12,19 @@
         {% block body %}
             {% include 'Navbar.html.twig' %}
 
-            {% block container %}{% endblock %}
-
+            <div class="row" style="padding-top: 2em">
+                {% block bodyWithNavbar %}
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="jumbotron">
+                            {% block bodyContainer %}
+                                <h1 class="display-3">Information</h1>
+                                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
         {% endblock %}
 
         <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>

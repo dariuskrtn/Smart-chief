@@ -41,7 +41,8 @@ class RegistrationType extends AbstractType
             ],
         ]);
         $builder->add('chief_user', CheckboxType::class, [
-            'required' => false
+            'required' => false,
+            'label' => 'Register as a chief?'
         ]);
     }
 

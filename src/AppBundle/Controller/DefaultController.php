@@ -153,5 +153,14 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function viewRequestHistoryAction()
+    {
+        $requests = $this->getUser()->getRequests();
+
+        return $this->render('default/viewRequestHistory.html.twig', [
+            'requestList' => $requests,
+        ]);
+    }
+
 
 }
