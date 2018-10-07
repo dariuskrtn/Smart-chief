@@ -13,12 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
+        $user = $this->getUser();
+        if ($user != null && $user->isChiefUser() && $user->getChief() == null) {
+            return $this->redirectToRoute('chief.register');
+        }
+
+        return $this->render('default/index.html.twig', []);
     }
 
     public function createRequestAction(Request $request, $chiefId = 0)
