@@ -1,9 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseTemplate.html.twig' %}
 
-{% block body %}
+{% block container %}
 
 {% endblock %}
 
 {% block stylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var notify = $.notify('<strong>Saving</strong> Do not close this page...', {
+            allow_dismiss: true,
+            animate: {
+                enter: 'animated fadeInDown',
+                exit: 'animated fadeOutDown'
+            }
+        });
+    </script>
 
 {% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}SMART Chief{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('bootstrapTheme.css') }}" />
+        <link rel="stylesheet" href="{{ asset('components/animate.css/animate.min.css') }}" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            {% include 'Navbar.html.twig' %}
+
+            {% block container %}{% endblock %}
+
+        {% endblock %}
+
+        <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('components/remarkable-bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

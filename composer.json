@@ -29,7 +29,10 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "friendsofsymfony/user-bundle": "~2.0",
-        "reactivex/rxphp": "^2.0"
+        "reactivex/rxphp": "^2.0",
+        "fxp/composer-asset-plugin": "^1.4",
+        "bower-asset/remarkable-bootstrap-notify": "^3.1",
+        "bower-asset/animate.css": "^3.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -52,6 +55,9 @@
         ]
     },
     "extra": {
+        "asset-installer-paths": {
+            "bower-asset-library": "web/components"
+        },
         "symfony-app-dir": "app",
         "symfony-bin-dir": "bin",
         "symfony-var-dir": "var",
