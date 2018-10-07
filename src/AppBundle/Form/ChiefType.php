@@ -35,11 +35,38 @@ class ChiefType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('education', TextType::class, array())
-            ->add('description', TextareaType::class, array())
-            ->add('location', TextType::class, array())
-            ->add('visitRadius', IntegerType::class, array())
+            ->add('education', TextType::class, [
+                'label' => 'Education',
+                'required' => false,
+                'attr' => [
+                    'maxlength' => 40
+                ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'required' => true,
+                'attr' => [
+                    'minlength' => 10,
+                    'maxlength' => 2000,
+                ]
+            ])
+            ->add('location', TextType::class, [
+                'label' => 'Location',
+                'required' => true,
+                'attr' => [
+                    'minlength' => 3,
+                    'maxlength' => 30
+                ]
+            ])
+            ->add('visitRadius', IntegerType::class, [
+                'label' => 'Visit Radius',
+                'required' => true,
+                'attr' => [
+                    'maxlength' => '10'
+                ]
+            ])
             ->add('tags', ChoiceType::class, array(
+                'label' => 'Tags',
                 'multiple' => true,
                 'choices' => ['WDNEBGVJWER' => '12', 'slijhvldnfs.' => '23', 'VFVFGFSDV' => '34']
             ))

@@ -34,12 +34,24 @@ class RequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('arrivalDateTime', DateTimeType::class, array())
-            ->add('location', TextType::class, array())
-            ->add('description', TextareaType::class, array())
+            ->add('arrivalDateTime', DateTimeType::class, [
+                'required' => true
+            ])
+            ->add('location', TextType::class, [
+                'required' => true,
+                'attr' => [
+                    'maxlength' => '60'
+                ]
+            ])
+            ->add('description', TextareaType::class, [
+                'required' => true,
+                'attr' => [
+                    'maxlength' => '2000'
+                ]
+            ])
 
             ->add('submit', SubmitType::class, array(
-                'label' => 'Save'
+                'label' => 'Send request'
             ))
             ->getForm();
     }

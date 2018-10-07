@@ -37,11 +37,17 @@ class ReviewType extends AbstractType
     {
         $builder
             ->add('stars', ChoiceType::class, array(
+                'required' => true,
                 'choices' => [
                     1, 2, 3, 4, 5
                 ]
             ))
-            ->add('comment', TextareaType::class, array())
+            ->add('comment', TextareaType::class, [
+                'required' => false,
+                'attr' => [
+                    'maxlength' => 2000
+                ]
+            ])
             ->add('submit', SubmitType::class, array(
                 'label' => 'Submit Review'
             ))
