@@ -1,3 +1,43 @@
-{{ form_start(form) }}
-{{ form_rest(form) }}
-{{ form_end(form) }}
+{% extends 'baseTemplate.html.twig' %}
+
+{% block bodyContainer %}
+    <h1>Chief Information:</h1>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-4">
+            {{ form_label(form.education) }}
+            {{ form_widget(form.education, {'attr': {'class': 'form-control'} }) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.location) }}
+            {{ form_widget(form.location, {'attr': {'class': 'form-control'} }) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.visitRadius) }}
+            {{ form_widget(form.visitRadius, {'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '8'} }) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_label(form.tags) }}
+            {{ form_widget(form.tags, {'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            {{ form_row(form.submit, {'attr': {'class': 'btn btn-default' }}) }}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

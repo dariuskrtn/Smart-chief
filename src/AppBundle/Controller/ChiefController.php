@@ -14,11 +14,14 @@ class ChiefController extends Controller
     {
         $m = $this->getDoctrine()->getManager();
         $chief = $this->get('chief_factory')->create();
+        $user = $this->getUser();
 
         $form = $this->createForm(ChiefType::class, $chief);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setChief($chief);
             $m->persist($chief);
+            $m->persist($user);
             $m->flush();
             return $this->redirectToRoute('app.index');
         }

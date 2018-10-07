@@ -68,10 +68,23 @@ class ChiefType extends AbstractType
             ->add('tags', ChoiceType::class, array(
                 'label' => 'Tags',
                 'multiple' => true,
-                'choices' => ['WDNEBGVJWER' => '12', 'slijhvldnfs.' => '23', 'VFVFGFSDV' => '34']
+                'choices' => [
+                    'Blynai' => 'blynai',
+                    'Desertai.' => 'desertai',
+                    'Picos' => 'picos',
+                    'Pyragai, Kepiniai' => 'pyragai',
+                    'Salotos' => 'salotos',
+                    'Sriubos' => 'sriubos',
+                    'Sumuštiniai' => 'sumustiniai',
+                    'Troškiniai' => 'troskiniai',
+                    'Užkandžiai' => 'uzkandziai',
+                    'Vaikams' => 'vaikams',
+                    'Vegetariški' => 'vegetariski',
+                    'Kiti' => 'kiti'
+                ]
             ))
             ->add('submit', SubmitType::class, array(
-                'label' => 'Comment'
+                'label' => 'Register'
             ))
             ->getForm();
     }

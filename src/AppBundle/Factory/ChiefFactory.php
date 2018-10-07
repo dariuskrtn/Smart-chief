@@ -22,6 +22,7 @@ class ChiefFactory
         $chief = new Chief();
 
         $chief->setVerified(false);
+        $chief->setVerifyRequested(true);
         $chief->setEnabled(true);
         $chief->setVisitRadius(15);
 
