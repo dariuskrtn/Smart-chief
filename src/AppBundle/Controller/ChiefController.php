@@ -23,7 +23,7 @@ class ChiefController extends Controller
             return $this->redirectToRoute('app.index');
         }
 
-        return $this->render('formTemplate.html.twig', [
+        return $this->render('form/chiefForm.html.twig', [
             'form' => $form->createView()
         ]);
 

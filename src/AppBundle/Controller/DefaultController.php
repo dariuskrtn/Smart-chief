@@ -38,7 +38,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
         }
 
-        return $this->render('formTemplate.html.twig', [
+        return $this->render('form/requestForm.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -74,7 +74,7 @@ class DefaultController extends Controller
 
                 return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
             }
-            return $this->render('formTemplate.html.twig', [
+            return $this->render('form/commentForm.html.twig', [
                 'form' => $form->createView()
             ]);
         }
@@ -97,7 +97,7 @@ class DefaultController extends Controller
 
                 return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
             }
-            return $this->render('formTemplate.html.twig', [
+            return $this->render('form/reviewForm.html.twig', [
                 'form' => $form->createView()
             ]);
         }
