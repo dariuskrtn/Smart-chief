@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Enum\RequestStatus;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -276,6 +277,11 @@ class Request
     public function setReview($review)
     {
         $this->review = $review;
+    }
+
+    public function getStatusString()
+    {
+        return RequestStatus::intToStatus($this->getStatus());
     }
 }
 

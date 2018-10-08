@@ -1,7 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseTemplate.html.twig' %}
 
-{% block body %}
-
+{% block bodyContainer %}
+    <h1>Request History:</h1>
+    <br>
+    <div class="alert alert-dismissible alert-light">
+        <div class="row">
+            <div class="col-md-2">
+                <strong>Arrival Date Time</strong>
+            </div>
+            <div class="col-md-3">
+                <strong>Address</strong>
+            </div>
+            <div class="col-md-3">
+                <strong>Description</strong>
+            </div>
+            <div class="col-md-3">
+                <strong>Selected Chief</strong>
+            </div>
+            <div class="col-md-1">
+                <strong>Status</strong>
+            </div>
+        </div>
+    </div>
+    {% for request in requestList %}
+        <div class="alert alert-dismissible alert-danger">
+            <a href="{{ path('app.viewRequest', {'requestId': request.id}) }}">
+                <div class="row">
+                    <div class="col-md-2">
+                        <strong>{{ request.arrivalDateTime|date('Y-m-d H:i') }}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>{{ request.location }}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>{{ request.description|slice(0, 50) }}</strong>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>
+                        {% if request.chief is not null %}
+                            {{ request.chief.user.name }} {{ request.chief.user.surname }}
+                        {% else %}
+                            No Chief Selected
+                        {% endif %}
+                        </strong>
+                    </div>
+                    <div class="col-md-1">
+                        <span class="badge badge-primary">{{ request.statusString }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
 {% endblock %}
 
 {% block stylesheets %}

@@ -23,7 +23,7 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', []);
     }
 
-    public function createRequestAction(Request $request, $chiefId = 0)
+    public function createRequestAction(Request $request, $chiefId)
     {
         $m = $this->getDoctrine()->getManager();
 

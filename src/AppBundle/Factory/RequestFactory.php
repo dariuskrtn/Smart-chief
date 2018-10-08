@@ -28,6 +28,7 @@ class RequestFactory
     {
         $request = new Request();
         $request->setClient($user);
+        $request->setChief($chief);
         $request->setDescription("");
 
         $request->setStatus(RequestStatus::PENDING);
