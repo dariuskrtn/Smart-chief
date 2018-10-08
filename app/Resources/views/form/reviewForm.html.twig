@@ -1,3 +1,22 @@
 {{ form_start(form) }}
-{{ form_rest(form) }}
+<div class="row">
+    <div class="col-md-12">
+        {{ form_label(form.stars) }}
+        {{ form_widget(form.stars, {'attr': {} }) }}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        {{ form_label(form.comment) }}
+        {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'rows' : '8'} }) }}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        {{ form_row(form.submit, {'attr': {'class': 'btn btn-default' }}) }}
+    </div>
+</div>
+
 {{ form_end(form) }}
