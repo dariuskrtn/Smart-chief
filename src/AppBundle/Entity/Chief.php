@@ -341,6 +341,19 @@ class Chief
     }
 
     /**
+     * @return float
+     */
+    public function getRating()
+    {
+        $sum = 0.0;
+        foreach ($this->getReviews() as $review) {
+            $sum += $review->getStars();
+        }
+        if ($this->getReviews() != null && count($this->getReviews()) > 0) $sum /= count($this->getReviews());
+        return $sum;
+    }
+
+    /**
      * @return bool
      */
     public function isEnabled()

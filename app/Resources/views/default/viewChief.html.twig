@@ -1,7 +1,41 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseTemplate.html.twig' %}
 
-{% block body %}
+{% block bodyContainer %}
 
+    <div class="row">
+        <div class="col-md-9">
+            <h1 align="center">{{ chief.user.name }} {{ chief.user.surname }}</h1>
+            <img class="card-img-top" src="{{ asset('img/meniuFood.jpg') }}" alt="Card image cap">
+            <hr>
+            <p>{{ chief.description }}</p>
+            <hr>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <a class="btn btn-primary form-control" href="{{ path('app.createRequest', {'chiefId': chief.id}) }}">Create a Request</a>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="{{ asset('img/avatar.png') }}" class="rounded" />
+                    <br>
+                    <i style="color: gold; font-size: 3em;" class="fas fa-star"></i>
+                    <b style="font-size: 3em;">{{ chief.rating|number_format(1) }}</b>
+                    <br>
+                    <b>Tags: </b>{% for tag in chief.tags %}{{ tag|capitalize }} {% endfor %}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-primary" href="{{ path('app.createRequest', {'chiefId': chief.id}) }}">Create a Request</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
