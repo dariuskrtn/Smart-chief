@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17b9f47c4c6de5f058ac41b3279fd9ff",
+    "content-hash": "5f36f4dfe29ddee7893911a68f0b9f1a",
     "packages": [
         {
             "name": "bower-asset/animate.css",
@@ -48,6 +48,55 @@
                 "shasum": ""
             },
             "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/components-font-awesome",
+            "version": "5.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/font-awesome.git",
+                "reference": "18619364d77677cec103934b1aee6d4f45407d1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/font-awesome/zipball/18619364d77677cec103934b1aee6d4f45407d1a",
+                "reference": "18619364d77677cec103934b1aee6d4f45407d1a",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "css/fontawesome-all.css",
+                    "scss/fontawesome.scss",
+                    "webfonts/fa-brands-400.eot",
+                    "webfonts/fa-brands-400.woff2",
+                    "webfonts/fa-brands-400.woff",
+                    "webfonts/fa-brands-400.ttf",
+                    "webfonts/fa-brands-400.svg",
+                    "webfonts/fa-regular-400.eot",
+                    "webfonts/fa-regular-400.woff2",
+                    "webfonts/fa-regular-400.woff",
+                    "webfonts/fa-regular-400.ttf",
+                    "webfonts/fa-regular-400.svg",
+                    "webfonts/fa-solid-900.eot",
+                    "webfonts/fa-solid-900.woff2",
+                    "webfonts/fa-solid-900.woff",
+                    "webfonts/fa-solid-900.ttf",
+                    "webfonts/fa-solid-900.svg"
+                ],
+                "bower-asset-ignore": [
+                    "Makefile",
+                    "component.json",
+                    "composer.json"
+                ]
+            },
+            "license": [
+                "CC-BY-4.0",
+                "MIT",
+                "OFL-1.1"
+            ],
+            "description": "Font Awesome, the iconic SVG, font, and CSS framework.",
+            "time": "2018-02-11T17:32:00+00:00"
         },
         {
             "name": "bower-asset/jquery",

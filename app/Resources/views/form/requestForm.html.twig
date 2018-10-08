@@ -1,11 +1,18 @@
 {% extends 'baseTemplate.html.twig' %}
 
 {% block bodyContainer %}
-    <h1>Request a chief:</h1>
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Request a chief:</h1>
+        </div>
+        <div class="col-md-3">
+            <img src="{{ asset('img/avatar.png') }}" class="rounded" />
+        </div>
+    </div>
     {{ form_start(form) }}
     {% if chief is not null %}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h3> Chief: {{ chief.user.name }} {{ chief.user.surname }}</h3>
         </div>
     </div>

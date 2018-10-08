@@ -15,6 +15,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app.viewChiefList', {'page': '1'}) }}">Choose a chief</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app.viewRequestHistory') }}">Request history</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('chief.viewRequestHistory', {'chiefId': app.user.chief.id}) }}">Request history</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('chief.request_verification', {'chiefId': app.user.chief.id}) }}">Verification</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('chief.request_verification', {'chiefId': app.user.chief.id}) }}">Subscription</a>
+                </li>
             {% endif %}
         </ul>
 

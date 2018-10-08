@@ -26,6 +26,10 @@ app.viewChief:
   path: /chief/view/{chiefId}
   defaults: { _controller: AppBundle:Default:viewChief }
 
+app.viewRequestHistory:
+  path: /request/history
+  defaults: { _controller: AppBundle:Default:viewRequestHistory }
+
 app.viewChiefList:
   path: /chief/list/{page}
   defaults: { _controller: AppBundle:Default:viewChiefList }
@@ -35,9 +39,13 @@ chief.register:
   defaults: { _controller: AppBundle:Chief:createChief }
 
 chief.request_verification:
-  path: /chief/request-verification
+  path: /chief/request-verification/{chiefId}
   defaults: { _controller: AppBundle:Chief:requestChiefVerification }
 
 chief.change_request_status:
   path: /chief/request/status/{requestId}/{statusId}
   defaults: { _controller: AppBundle:Chief:changeRequestStatus }
+
+chief.viewRequestHistory:
+  path: /chief/request/history/{chiefId}
+  defaults: { _controller: AppBundle:Chief:viewRequestHistory }
