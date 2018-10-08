@@ -50,7 +50,7 @@ class User extends BaseUser
     /**
      * @var Chief
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Chief")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Chief", inversedBy="user")
      */
     private $chief;
 

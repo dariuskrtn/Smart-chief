@@ -1,23 +1,41 @@
 {% extends 'baseTemplate.html.twig' %}
 
-{% block bodyContainer %}
-    <h1 class="display-5">Registration</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+{% block bodyWithNavbar %}
+    <div class="bg">
+        <div class="layer">
+            <div class="row middle">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h1 align="center">Welcome to SMART Chief!</h1>
+                </div>
+            </div>
+            {% if app.user != null %}
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
+                        <a href="{{ path('app.viewChiefList', {'page': '1'}) }}" class="btn btn-primary form-control">Request a chief now!</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
+                        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary form-control">Register Now!</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary form-control">Login</a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
-
+<link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        var notify = $.notify('<strong>Saving</strong> Do not close this page...', {
-            allow_dismiss: true,
-            animate: {
-                enter: 'animated fadeInDown',
-                exit: 'animated fadeOutDown'
-            }
-        });
-    </script>
 
 {% endblock %}

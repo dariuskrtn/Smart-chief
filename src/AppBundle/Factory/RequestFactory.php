@@ -21,10 +21,10 @@ class RequestFactory
 
     /**
      * @param User $user
-     * @param Chief $chief
+     * @param Chief|null $chief
      * @return Request
      */
-    public function create(User $user, Chief $chief)
+    public function create(User $user, $chief)
     {
         $request = new Request();
         $request->setClient($user);

@@ -3,8 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
-use AppBundle\Enum\RequestType;
 use AppBundle\Form\CommentType;
+use AppBundle\Form\RequestType;
 use AppBundle\Form\ReviewType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -41,7 +41,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('form/requestForm.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'chief' => $chief
         ]);
     }
 

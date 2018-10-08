@@ -1,3 +1,39 @@
-{{ form_start(form) }}
-{{ form_rest(form) }}
-{{ form_end(form) }}
+{% extends 'baseTemplate.html.twig' %}
+
+{% block bodyContainer %}
+    <h1>Request a chief:</h1>
+    {{ form_start(form) }}
+    {% if chief is not null %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3> Chief: {{ chief.user.name }} {{ chief.user.surname }}</h3>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-4">
+            {{ form_label(form.arrivalDateTime) }}
+            {{ form_widget(form.arrivalDateTime, {'attr': {'class': 'form-control'} }) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.location) }}
+            {{ form_widget(form.location, {'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '8'} }) }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            {{ form_row(form.submit, {'attr': {'class': 'btn btn-default' }}) }}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+{% endblock %}

@@ -12,19 +12,21 @@
         {% block body %}
             {% include 'Navbar.html.twig' %}
 
-            <div class="row" style="padding-top: 2em">
-                {% block bodyWithNavbar %}
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <div class="jumbotron">
-                            {% block bodyContainer %}
-                                <h1 class="display-3">Information</h1>
-                                <p class="lead">Example text.</p>
-                            {% endblock %}
+            {% block bodyWithNavbar %}
+                <div class="row" style="padding-top: 2em">
+                    {% block bodyWithNavbarCentered %}
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="jumbotron">
+                                {% block bodyContainer %}
+                                    <h1 class="display-3">Information</h1>
+                                    <p class="lead">Example text.</p>
+                                {% endblock %}
+                            </div>
                         </div>
-                    </div>
+                    {% endblock %}
+                </div>
                 {% endblock %}
-            </div>
         {% endblock %}
 
         <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>

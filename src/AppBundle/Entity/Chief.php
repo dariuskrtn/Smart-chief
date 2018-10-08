@@ -98,6 +98,13 @@ class Chief
      */
     private $enabled;
 
+    /**
+     * @var User
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", mappedBy="chief")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -347,6 +354,22 @@ class Chief
     public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 
 }
