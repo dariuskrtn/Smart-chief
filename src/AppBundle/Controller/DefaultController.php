@@ -67,6 +67,7 @@ class DefaultController extends Controller
         $chiefRequest = $m->find('AppBundle:Request', $requestId);
 
         if ($chiefRequest != null) {
+            $redirect = false;
             $comment = $this->get('comment_factory')->create($chiefRequest, $this->getUser());
 
             $form = $this->createForm(CommentType::class, $comment);
@@ -75,10 +76,13 @@ class DefaultController extends Controller
                 $m->persist($comment);
                 $m->flush();
 
-                return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
+                //hotfix
+                $redirect = true;
+                $form = $this->createForm(CommentType::class, $this->get('comment_factory')->create($chiefRequest, $this->getUser()));
             }
             return $this->render('form/commentForm.html.twig', [
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'redirect' => $redirect
             ]);
         }
         return $this->redirectToRoute('app.index');
@@ -90,6 +94,7 @@ class DefaultController extends Controller
         $chiefRequest = $m->find('AppBundle:Request', $requestId);
 
         if ($chiefRequest != null) {
+            $redirect = false;
             $review = $this->get('review_factory')->create($chiefRequest);
 
             $form = $this->createForm(ReviewType::class, $review);
@@ -98,10 +103,13 @@ class DefaultController extends Controller
                 $m->persist($review);
                 $m->flush();
 
-                return $this->redirectToRoute('app.viewRequest', ['requestId' => $chiefRequest->getId()]);
+                //hotfix
+                $redirect = true;
+                $form = $this->createForm(ReviewType::class, $this->get('review_factory')->create($chiefRequest));
             }
             return $this->render('form/reviewForm.html.twig', [
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'redirect' => $redirect
             ]);
         }
         return $this->redirectToRoute('app.index');

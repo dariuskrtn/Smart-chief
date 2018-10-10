@@ -1,6 +1,89 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseTemplate.html.twig' %}
 
-{% block body %}
+{% block bodyContainer %}
+    <h1>Request #{{ request.id }}</h1>
+
+    <div class="row">
+        <div class="col-md-9">
+            <h5>Description:</h5>
+            <p>{{ request.description }}</p>
+            <hr>
+            <h5>Comments:</h5>
+            {% for comment in request.comments %}
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ comment.user.name }}</h4>
+                        <p class="card-text">{{ comment.comment }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+            {% if request.status != 1 %}
+                {{ render(controller('AppBundle:Default:commentRequest', { 'request': app.request, 'requestId': request.id } )) }}
+            {% else %}
+                {% if app.user.id == request.client.id and request.review == null %}
+                    {{ render(controller('AppBundle:Default:createReview', { 'request': app.request, 'requestId': request.id } )) }}
+                {% endif %}
+                {% if request.review != null %}
+                    <h5>Review:</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ request.review.user.name }}</h4>
+                            <p class="card-text">{{ request.description }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-md-3" style="font-size: 1.3em;">
+            {% if request.review != null %}
+            <i style="color: gold; font-size: 3em;" class="fas fa-star"></i>
+            <b style="font-size: 3em;">{{ request.review.stars|number_format(1) }}</b>
+            <br>
+            {% endif %}
+            <strong>Chief: {{ request.chief.user.name }} {{ request.chief.user.surname }}</strong>
+            <br>
+            <strong>Status: <span class="badge badge-primary">{{ request.statusString }}</span></strong>
+            <br>
+            <strong>Arrival Time: <br> {{ request.arrivalDateTime|date('Y-m-d H:i') }}</strong>
+            <br>
+            <strong>Arrival Location: {{ request.location }}</strong>
+            <br>
+
+            {% if app.user.id == request.client.id and (request.status == 4 or request.status == 5) %}
+                <br>
+                <a class="btn btn-primary" href="{{ path('app.cancelRequest', {'requestId': request.id}) }}">Cancel Request</a>
+                <br>
+            {% endif %}
+            {% if request.chief.user.id == app.user.id %}
+                {% if request.status == 5 %}
+                    <br>
+                    <a class="btn btn-success"
+                       href="{{ path('chief.change_request_status', {'statusId': '3', 'requestId': request.id}) }}">Set Request In Progress</a>
+                    <br>
+                {% endif %}
+                {% if request.status == 3 %}
+                    <br>
+                    <a class="btn btn-success"
+                       href="{{ path('chief.change_request_status', {'statusId': '1', 'requestId': request.id}) }}">Complete Request</a>
+                    <br>
+                {% endif %}
+                {% if request.status == 4 %}
+                    <br>
+                    <a class="btn btn-success"
+                       href="{{ path('chief.change_request_status', {'statusId': '5', 'requestId': request.id}) }}">Accept Request</a>
+                    <br>
+                {% endif %}
+                <br>
+                {% if request.status == 4 or request.status == 5 %}
+                    <a class="btn btn-primary"
+                       href="{{ path('chief.change_request_status', {'statusId': '2', 'requestId': request.id}) }}">Cancel Request</a>
+                    <br>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
 
 {% endblock %}
 
